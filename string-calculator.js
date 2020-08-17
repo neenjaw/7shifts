@@ -1,6 +1,6 @@
 function add(numberString) {
   return numberString
-    .split(",")
+    .split(/[^\d]+/)
     .map(Number)
     .reduce((runningSum, number) => runningSum + number, 0);
 }
