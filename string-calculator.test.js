@@ -29,3 +29,16 @@ test("adds 1, 2, 3 with custom delimiter", () => {
 test("adds 2, 3, 8 with custom delimiter", () => {
   expect(add("//@\n2@3@8")).toBe(13);
 });
+
+// Step 4
+test("throws an error with negative number", () => {
+  expect(() => add("//;\n-1;1")).toThrow(
+    "Negatives not allowed. Number(s) causing error: -1"
+  );
+});
+
+test("throws an error with two negative numbers", () => {
+  expect(() => add("//;\n-1;-2")).toThrow(
+    "Negatives not allowed. Number(s) causing error: -1, -2"
+  );
+});
