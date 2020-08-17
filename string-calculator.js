@@ -12,10 +12,22 @@ function add(combinedString) {
 
   const numberString = combinedString.substring(splitAt + 1);
 
-  return numberString
-    .split(delimiter)
-    .map(Number)
-    .reduce((runningSum, number) => runningSum + number, 0);
+  const numbers = numberString.split(delimiter).map(Number);
+
+  const negativeNumbers = numbers.filter(outNonNegativeNumbers);
+
+  if (negativeNumbers.length > 0) {
+    const negativeNumberString = negativeNumbers.join(", ");
+    throw new Error(
+      `Negatives not allowed. Number(s) causing error: ${negativeNumberString}`
+    );
+  }
+
+  return numbers.reduce((runningSum, number) => runningSum + number, 0);
+}
+
+function outNonNegativeNumbers(number) {
+  return number < 0;
 }
 
 module.exports = add;
