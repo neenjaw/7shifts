@@ -12,7 +12,10 @@ function add(combinedString) {
 
   const numberString = combinedString.substring(splitAt + 1);
 
-  const numbers = numberString.split(delimiter).map(Number);
+  const numbers = numberString
+    .split(delimiter)
+    .map(Number)
+    .filter(outNumbersGreaterThan(1000));
 
   const negativeNumbers = numbers.filter(outNonNegativeNumbers);
 
@@ -28,6 +31,10 @@ function add(combinedString) {
 
 function outNonNegativeNumbers(number) {
   return number < 0;
+}
+
+function outNumbersGreaterThan(limit) {
+  return (number) => number < limit;
 }
 
 module.exports = add;
