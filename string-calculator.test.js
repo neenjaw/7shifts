@@ -42,3 +42,8 @@ test("throws an error with two negative numbers", () => {
     "Negatives not allowed. Number(s) causing error: -1, -2"
   );
 });
+
+// Bonus 1
+test("ignores numbers greater than 1000", () => {
+  expect(add("//@\n2@1000")).toBe(2);
+});
