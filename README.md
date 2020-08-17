@@ -9,6 +9,10 @@ Language: Javascript (nodejs v14.0.0)
 
 Then you can `npm run test` to see the output as it currently works.
 
+## Repository description
+
+Each step of the problem is contained in a branch, so that it is possible to easily view the progression of the solution.
+
 ## Problem description
 
 > string-calculator.js
