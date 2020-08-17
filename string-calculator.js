@@ -2,8 +2,8 @@ const DELIMITER_CONTROL_CODE_SEPARATOR = "\n";
 const DELIMITER_SEPARATOR = ",";
 
 /**
- * Takes a string of the form “//[delimiter]\n[delimiter separated numbers]”
- * and adds the numbers
+ * Takes a string of the form “//[delimiters separated by commas]\n[delimiter separated numbers]”
+ * and adds the non-negative numbers less than 1000
  */
 function add(combinedString) {
   const splitAt = combinedString.indexOf(DELIMITER_CONTROL_CODE_SEPARATOR);
@@ -12,12 +12,13 @@ function add(combinedString) {
   const delimiters = delimiterControlCode
     .substring(2)
     .split(DELIMITER_SEPARATOR);
-  const delimiter_regex = new RegExp(`[${delimiters.join("")}]+`);
+  const escapedDelimiters = delimiters.map(escapeString);
+  const delimiterRegex = new RegExp(`${escapedDelimiters.join("|")}`);
 
   const numberString = combinedString.substring(splitAt + 1);
 
   const numbers = numberString
-    .split(delimiter_regex)
+    .split(delimiterRegex)
     .map(Number)
     .filter(outNumbersGreaterThan(1000));
 
@@ -39,6 +40,10 @@ function outNonNegativeNumbers(number) {
 
 function outNumbersGreaterThan(limit) {
   return (number) => number < limit;
+}
+
+function escapeString(string) {
+  return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
 }
 
 module.exports = add;
