@@ -47,3 +47,16 @@ test("throws an error with two negative numbers", () => {
 test("ignores numbers greater than 1000", () => {
   expect(add("//@\n2@1000")).toBe(2);
 });
+
+// Bonus 2
+test("add 2, 3, 4 with delimiters of arbitrary length", () => {
+  expect(add("//@@\n2@@3@@4")).toBe(9);
+});
+
+test("add 7, 8, 9 with delimiters of arbitrary length", () => {
+  expect(add("//;;;\n7;;;8;;;9")).toBe(24);
+});
+
+test("add 7, 8, 9 with complex delimiters of arbitrary length", () => {
+  expect(add("//;complex;\n7;complex;8;complex;9")).toBe(24);
+});

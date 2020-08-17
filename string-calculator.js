@@ -8,7 +8,7 @@ function add(combinedString) {
   const splitAt = combinedString.indexOf(DELIMITER_CONTROL_CODE_SEPARATOR);
 
   const delimiterControlCode = combinedString.substring(0, splitAt);
-  const delimiter = delimiterControlCode[2];
+  const delimiter = delimiterControlCode.substring(2);
 
   const numberString = combinedString.substring(splitAt + 1);
 
