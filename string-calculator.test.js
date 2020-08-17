@@ -48,6 +48,8 @@ test("ignores numbers greater than 1000", () => {
   expect(add("//@\n2@1000")).toBe(2);
 });
 
+/**
+ * Tests commented out as they will combined for bonus 4
 // Bonus 2
 test("add 2, 3, 4 with delimiters of arbitrary length", () => {
   expect(add("//@@\n2@@3@@4")).toBe(9);
@@ -59,4 +61,10 @@ test("add 7, 8, 9 with delimiters of arbitrary length", () => {
 
 test("add 7, 8, 9 with complex delimiters of arbitrary length", () => {
   expect(add("//;complex;\n7;complex;8;complex;9")).toBe(24);
+});
+*/
+
+// Bonus 3
+test("add 1, 2, 3 support multiple delimiter", () => {
+  expect(add("//$,@\n1$2@3")).toBe(6);
 });

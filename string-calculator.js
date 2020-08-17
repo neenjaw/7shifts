@@ -1,4 +1,5 @@
 const DELIMITER_CONTROL_CODE_SEPARATOR = "\n";
+const DELIMITER_SEPARATOR = ",";
 
 /**
  * Takes a string of the form “//[delimiter]\n[delimiter separated numbers]”
@@ -8,12 +9,15 @@ function add(combinedString) {
   const splitAt = combinedString.indexOf(DELIMITER_CONTROL_CODE_SEPARATOR);
 
   const delimiterControlCode = combinedString.substring(0, splitAt);
-  const delimiter = delimiterControlCode.substring(2);
+  const delimiters = delimiterControlCode
+    .substring(2)
+    .split(DELIMITER_SEPARATOR);
+  const delimiter_regex = new RegExp(`[${delimiters.join("")}]+`);
 
   const numberString = combinedString.substring(splitAt + 1);
 
   const numbers = numberString
-    .split(delimiter)
+    .split(delimiter_regex)
     .map(Number)
     .filter(outNumbersGreaterThan(1000));
 
